@@ -1,0 +1,4 @@
+CREATE USER replicator WITH REPLICATION PASSWORD 'replicate';
+GRANT ALL PRIVILEGES ON DATABASE my_database TO replicator;
+ALTER USER replicator WITH SUPERUSER;
+

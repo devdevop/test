@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  primary:
+    image: postgres:14
+    container_name: postgres-primary
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_INITDB_ARGS: "-E wal_level=logical"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  secondary:
+    image: postgres:14
+    container_name: postgres-secondary
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:
